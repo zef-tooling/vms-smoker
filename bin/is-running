@@ -1,0 +1,17 @@
+#!/bin/bash
+
+RN="`dirname $0`/running-vms"
+
+if [[ ! -f "$RN" ]]; then
+  echo "Cannot find zef-tools/bin"
+  exit 1
+fi
+  
+FOUND=`. $RN | egrep "^  $1$"`
+echo -n $1 "is "
+if [[ "$FOUND" == "" ]]; then
+  echo 'not running'
+else
+  echo 'running'
+fi
+exit 0

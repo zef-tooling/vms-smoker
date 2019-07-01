@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ `which VBoxManage` == "" ]]; then
+  echo 'VBoxManage not in path.'
+  exit 1
+fi
+
+OUT=`VBoxManage list -l runningvms | grep 'Name:' | awk '{ printf("  %s", $2) }'`
+
+if [[ "$OUT" == "" ]]; then
+  echo 'No VMs running'
+else
+  echo 'Running:'
+  echo "$OUT"
+fi
