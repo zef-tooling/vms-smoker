@@ -1,0 +1,19 @@
+#!.
+
+#CWD=`pwd`
+
+if [ ! -d "$HOME/.p6" ]; then
+  mkdir $HOME/.p6
+fi
+
+if [ ! -d "$HOME/.p6/tags" ]; then
+  mkdir $HOME/.p6/tags
+fi
+
+if [ ! -d "$HOME/.p6/rakudo" ]; then
+  git clone https://github.com/rakudo/rakudo.git $HOME/.p6/rakudo
+fi
+
+cd $HOME/.p6/rakudo
+BIN=`date +'%y-%m-%d'`
+perl Configure.pl --gen-moar --gen-nqp --backends=all --prefix="$HOME/.p6/tags/$BIN"
